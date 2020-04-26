@@ -1,0 +1,84 @@
+<div *ngIf="service.service$ | async as service; else load ">
+
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{service.abbreviation}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-divider></mat-divider>
+          <mat-list-item (click)="serviceSignOut()">Log out</mat-list-item>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-list>
+        <mat-list-item><a class="tabActive1"> Dashboard </a> </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item > <a href="/service/livequeue " class="text-white" target="_blank" >Live Queue</a></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="openDialog()" >Teller</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item (click)="openProfileDialog()">Account</mat-list-item>
+      </mat-list>
+
+      <mat-list class="bottom-ver">
+        <mat-list-item>UQS BETA 1.0.5</mat-list-item>
+      </mat-list>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+      <main role="main">
+        <!-- Active Tickets -->
+        <div id="activeTickets" [hidden]="isHiddenTickets">
+          <div class="jumbotron">
+            <div class="container">
+              <h1 class="display-4 text-white">Dashboard <span style="font-size: 24px;">  Ticket Count:  {{service.ticketCount}}  | Ticket Count:  {{service.ticketCountDone}}  </span></h1>
+            </div>
+          </div>
+          <div class="container test">
+
+            <br>
+     
+            <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+              <ng-container *ngFor="let ticket of ticket.tickets$ | async">
+                <div class="card text-center" fxFlex="0 1 calc(33.3% - 32px)" style="width: 18rem;">
+                  <div class="card-body">
+                    <h3 class="card-title text-center" style="color:#3336CA">{{ ticket.ticketNo }}</h3>
+                    
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+
+          </div>
+        </div>
+      </main>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+
+</div>
+
+<ng-template #load>
+
+  <div class="container text-center loadStyle">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-progress-spinner class="example-margin " [color]="color" [mode]="mode" [value]="value">
+        </mat-progress-spinner>
+        <p> Please wait while we load some data.</p>
+      </div>
+    </div>
+  </div>
+
+
+
+</ng-template>

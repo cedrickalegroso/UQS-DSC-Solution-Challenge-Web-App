@@ -1,0 +1,41 @@
+
+.loadStyle {
+    margin-top: 40vh;
+    mat-progress-spinner{
+     margin-left: auto;
+     margin-right: auto;
+    } 
+  }
+
+  .example-container {
+
+    width: 100vw;
+    height: 100vh;
+
+
+    .mat-drawer.mat-drawer-side {
+        z-index: 2;
+        width: 28vw;
+        background-color:  #0871e2;
+    }
+
+
+    mat-drawer-content{
+      padding: 10px;
+        .serviceName{
+            color: white;
+            font-size: 1.5rem;
+        }
+        background-color: #007bff;
+
+        mat-drawer{
+            width: 50vw;
+            margin: 5px;
+            padding: 10px;
+
+            mat-card{
+                color: #007bff;
+            }
+        }
+    }
+  }

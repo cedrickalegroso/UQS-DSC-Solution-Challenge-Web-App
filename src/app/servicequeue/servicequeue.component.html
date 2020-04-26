@@ -1,0 +1,50 @@
+
+<div *ngIf="service.service$ | async as service; else load " >
+ 
+  <mat-drawer-container class="example-container">
+    
+    <mat-drawer-content>
+      
+      <img  style="width: 64px;" class="img-profile rounded-circle" [src]="service.photoUrl">
+      <span class="serviceName"> {{ service.displayName }} </span>
+
+    </mat-drawer-content>
+
+    <mat-drawer mode="side" position="end" opened>
+    
+       <h1 class="display-4 text-white text-center mt-3"> Live Queue </h1>
+       <br />
+      <div *ngFor="let ticket of ticket.liveTickets$ | async " style="padding: 10px;">
+        <mat-card>
+          <h4 class="text-primary" > Teller {{ ticket.teller }}</h4>
+          <h1 class="text-primary"> {{ ticket.ticketNo }}</h1>
+        </mat-card>
+  
+      </div>
+     
+    </mat-drawer>
+  </mat-drawer-container>
+
+
+  </div>
+
+  <ng-template #load>
+
+    <div class="container text-center loadStyle">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-progress-spinner 
+          class="example-margin "
+          [color]="color"
+          [mode]="mode"
+          [value]="value">
+      </mat-progress-spinner>
+      <p> Please wait while we load some data.</p>
+        </div>
+      </div>
+    </div>
+   
+      
+  
+  </ng-template>
+
